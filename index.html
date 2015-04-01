@@ -4,14 +4,38 @@
 </head>
 <body>
 
-	<svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
+	<svg id="svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"></svg>
 
 	<script>
+	var r=10;
 	function Circle(cx, cy, html_id)
 	{
 		var html_id = html_id;
-		this.info = { cx: cx,  cy: cy };
+		this.info = { cx: cx,  cy: cy , rad: r};
+
+		 (function clickTime()
+		{
+
+			var mousedown_time;
+
+			function getTime(){
+				var date = new Date();
+				return date.getTime();
+			}
+
+			document.onmousedown = function(e){
+				mousedown_time = getTime();
+			}
+			document.onmouseup = function(e){
+				time_pressed = getTime() - mousedown_time;
+				r = time_pressed/20;
+				return r;
+			}
+		})();
 		
+		
+		
+
 		//private function that generates a random number
 		var randomNumberBetween = function(min, max){
 			return Math.random()*(max-min) + min;
@@ -28,7 +52,7 @@
 			var circle = makeSVG('circle', 
 				{ 	cx: this.info.cx,
 				  	cy: this.info.cy,
-				  	r:  10,
+				  	r:  this.info.rad,
 				  	id: html_id,
 				  	style: "fill: black"
 				});
@@ -38,13 +62,13 @@
 
 		this.update = function(time){
 			var el = document.getElementById(html_id);
-
+			console.log(el);
 			//see if the circle is going outside the browser. if it is, reverse the velocity
-			if( this.info.cx > document.body.clientWidth || this.info.cx < 0)
+			if( this.info.cx > document.body.clientWidth - this.info.rad || this.info.cx < this.info.rad )
 			{
 				this.info.velocity.x = this.info.velocity.x * -1;
 			}
-			if( this.info.cy > document.body.clientHeight || this.info.cy < 0)
+			if( this.info.cy > document.body.clientHeight-this.info.rad || this.info.cy < this.info.rad)
 			{
 				this.info.velocity.y = this.info.velocity.y * -1;
 			}
