@@ -4,6 +4,7 @@
 </head>
 <body>
 
+<<<<<<< HEAD
 	<svg id="svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"></svg>
 
 	<script>
@@ -36,6 +37,16 @@
 		
 		
 
+=======
+	<svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
+
+	<script>
+	function Circle(cx, cy, html_id)
+	{
+		var html_id = html_id;
+		this.info = { cx: cx,  cy: cy };
+		
+>>>>>>> 2936f9383d128f3baafbc3087dbb3513fac1410c
 		//private function that generates a random number
 		var randomNumberBetween = function(min, max){
 			return Math.random()*(max-min) + min;
@@ -52,7 +63,11 @@
 			var circle = makeSVG('circle', 
 				{ 	cx: this.info.cx,
 				  	cy: this.info.cy,
+<<<<<<< HEAD
 				  	r:  this.info.rad,
+=======
+				  	r:  10,
+>>>>>>> 2936f9383d128f3baafbc3087dbb3513fac1410c
 				  	id: html_id,
 				  	style: "fill: black"
 				});
@@ -62,6 +77,7 @@
 
 		this.update = function(time){
 			var el = document.getElementById(html_id);
+<<<<<<< HEAD
 			console.log(el);
 			//see if the circle is going outside the browser. if it is, reverse the velocity
 			if( this.info.cx > document.body.clientWidth - this.info.rad || this.info.cx < this.info.rad )
@@ -69,6 +85,15 @@
 				this.info.velocity.x = this.info.velocity.x * -1;
 			}
 			if( this.info.cy > document.body.clientHeight-this.info.rad || this.info.cy < this.info.rad)
+=======
+
+			//see if the circle is going outside the browser. if it is, reverse the velocity
+			if( this.info.cx > document.body.clientWidth || this.info.cx < 0)
+			{
+				this.info.velocity.x = this.info.velocity.x * -1;
+			}
+			if( this.info.cy > document.body.clientHeight || this.info.cy < 0)
+>>>>>>> 2936f9383d128f3baafbc3087dbb3513fac1410c
 			{
 				this.info.velocity.y = this.info.velocity.y * -1;
 			}
@@ -123,9 +148,12 @@
 		playground.createNewCircle(e.x,e.y);
 	}
 	
+<<<<<<< HEAD
 
 
 	
+=======
+>>>>>>> 2936f9383d128f3baafbc3087dbb3513fac1410c
 	</script>
 
 </body>
